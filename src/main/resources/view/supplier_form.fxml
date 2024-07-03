@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="574.0" prefWidth="948.0" styleClass="bg-color-1" stylesheets="@../design/buttonStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.shop.controller.SupplierFormControll">
+    <children>
+        <Label layoutX="269.0" layoutY="2.0" prefHeight="45.0" prefWidth="411.0" text="Glitchbusters Supplier Manage " underline="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="0.6066350710900474" endY="0.46445497630331745" startX="0.6066350710900473" startY="0.6066350710900474">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.5333333611488342" green="0.5411764979362488" blue="0.5803921818733215" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <TextField fx:id="txtSupId" layoutX="255.0" layoutY="77.0" onAction="#itemSearchOnAction" onKeyReleased="#txtSupIdOnKey" prefHeight="25.0" prefWidth="236.0" promptText="ID" />
+        <TextField fx:id="txtName" layoutX="515.0" layoutY="77.0" onKeyReleased="#txtSupNameOnKey" prefHeight="25.0" prefWidth="236.0" promptText="Name" />
+        <TextField fx:id="txtDescription" layoutX="519.0" layoutY="126.0" onKeyReleased="#txtSupDescriptionOnKey" prefHeight="13.0" prefWidth="236.0" promptText="What Abot Supply" />
+        <TextField fx:id="txtSupMobile" layoutX="255.0" layoutY="125.0" onKeyReleased="#txtSupTeleOnKey" prefHeight="25.0" prefWidth="236.0" promptText="Mobile Number" />
+        <JFXButton layoutX="581.0" layoutY="177.0" onAction="#btnAddSupplier" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #233C4D;" text="Add Supplier" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="18.0" fitWidth="16.0">
+                    <image>
+                        <Image url="@../icon/icons8-add-properties-24.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton layoutX="472.0" layoutY="177.0" onAction="#btnUpdateSup" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #7FEE38;" text="Update" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="19.0" fitWidth="24.0">
+                    <image>
+                        <Image url="@../icon/icons8-update-24.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton layoutX="374.0" layoutY="177.0" onAction="#btnDeleteSup" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #F03232;" text="Delete" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="19.0" fitWidth="22.0">
+                    <image>
+                        <Image url="@../icon/icons8-delete-30.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <Label layoutX="515.0" layoutY="57.0" text="Supplier Name">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <Label layoutX="255.0" layoutY="57.0" text="Supplier ID">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <Label layoutX="519.0" layoutY="106.0" text="Description">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <Label layoutX="255.0" layoutY="103.0" text="Supplier Mobile">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <TableView fx:id="tblSupplier" layoutX="77.0" layoutY="230.0" onMouseClicked="#getAllDetails" prefHeight="330.0" prefWidth="790.0" stylesheets="@../design/TableStyle.css">
+            <columns>
+                <TableColumn fx:id="colSupId" prefWidth="105.0" text="Supplier ID" />
+                <TableColumn fx:id="colName" minWidth="2.0" prefWidth="221.0" text="Supplier Name" />
+                <TableColumn fx:id="colMobile" prefWidth="222.0" text="Mobile Number" />
+                <TableColumn fx:id="colDetails" prefWidth="272.0" text="Desceiption" />
+            </columns>
+        </TableView>
+        <JFXButton layoutX="273.0" layoutY="177.0" onAction="#btnClearFields" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #718149;" text="Clear" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="17.0" fitWidth="20.0">
+                    <image>
+                        <Image url="@../icon/icons8-broom-64.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+    </children>
+</AnchorPane>

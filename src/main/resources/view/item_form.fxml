@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="574.0" prefWidth="948.0" styleClass="bg-color-1" stylesheets="@../design/buttonStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.shop.controller.ItemFormController">
+   <children>
+      <Label layoutX="269.0" layoutY="2.0" prefHeight="45.0" prefWidth="411.0" text="Glitchbusters Item Manage System" underline="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.6066350710900474" endY="0.46445497630331745" startX="0.6066350710900473" startY="0.6066350710900474">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.5333333611488342" green="0.5411764979362488" blue="0.5803921818733215" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="txtCode" layoutX="107.0" layoutY="80.0" onAction="#itemSearchOnAction" onKeyReleased="#txtItemCodeOnkey" prefHeight="25.0" prefWidth="236.0" promptText="Item Code">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="txtName" layoutX="367.0" layoutY="80.0" onKeyReleased="#txtItemNameOnKey" prefHeight="25.0" prefWidth="236.0" promptText="Item Name">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="txtQty" layoutX="628.0" layoutY="80.0" onKeyReleased="#txtItemQtyOnKey" prefHeight="13.0" prefWidth="236.0" promptText="Quantity">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="txtDescription" layoutX="223.0" layoutY="128.0" onKeyReleased="#txtItemDetailOnKey" prefHeight="25.0" prefWidth="236.0" promptText="Details">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <JFXButton layoutX="581.0" layoutY="177.0" onAction="#btnAddItem" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #233C4D;" text="Add item" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="16.0">
+               <image>
+                  <Image url="@../icon/icons8-add-properties-24.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="472.0" layoutY="177.0" onAction="#btnUpdateItem" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #7FEE38;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="24.0">
+               <image>
+                  <Image url="@../icon/icons8-update-24.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="374.0" layoutY="177.0" onAction="#btnDeleteItem" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #F03232;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="22.0">
+               <image>
+                  <Image url="@../icon/icons8-delete-30.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="367.0" layoutY="60.0" text="Item name">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="107.0" layoutY="60.0" text="Item code">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="628.0" layoutY="60.0" text="Item quantity">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="256.0" layoutY="110.0" text="Item details">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TableView fx:id="tblItem" layoutX="35.0" layoutY="227.0" onMouseClicked="#getAllDetails" prefHeight="330.0" prefWidth="874.0" stylesheets="@../design/TableStyle.css">
+        <columns>
+          <TableColumn fx:id="colCode" prefWidth="105.0" text="Item Code" />
+          <TableColumn fx:id="colName" minWidth="2.0" prefWidth="238.0" text="Item Name" />
+            <TableColumn fx:id="colQty" prefWidth="128.0" text="Quantity" />
+            <TableColumn fx:id="colDetails" prefWidth="236.0" text="Details" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="166.0" text="Unit Price" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="273.0" layoutY="177.0" onAction="#btnClearFields" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #718149;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../icon/icons8-broom-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TextField fx:id="txtUnitPrice" layoutX="485.0" layoutY="128.0" onKeyReleased="#txtItemPriceOnKey" prefHeight="25.0" prefWidth="236.0" promptText="Unit price">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <Label layoutX="485.0" layoutY="110.0" text="Unit price">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.39336492890995256" startX="0.2985781990521327" startY="0.1137440758293839">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4132381081581116" green="1.0" blue="0.38999998569488525" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+   </children>
+</AnchorPane>

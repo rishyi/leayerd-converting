@@ -1,0 +1,20 @@
+.top-bg{
+    -fx-background-color: linear-gradient(to bottom right, rgb(99, 203, 135), rgb(52, 54, 53));
+    -fx-background-radius: 9px;
+}
+.grey-bg{
+    -fx-background-color: #c9c2c2;
+    -fx-background-radius: 2px;
+}
+.white-bg{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 2px;
+}
+.nav-from{
+    -fx-background-color:linear-gradient(to bottom right, rgb(99, 203, 135), rgb(52, 54, 53));
+    -fx-background-radius: 10px;
+}
+.card-bg{
+    -fx-background-color:linear-gradient(to bottom right, rgb(29, 77, 45), rgb(56, 66, 62)); ;
+    -fx-background-radius: 8px;
+}

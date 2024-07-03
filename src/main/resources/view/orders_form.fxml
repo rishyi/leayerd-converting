@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="574.0" prefWidth="948.0" styleClass="bg-color-1" stylesheets="@../design/buttonStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.shop.controller.OrdersFormController">
+    <children>
+        <Label layoutX="344.0" layoutY="14.0" prefHeight="38.0" prefWidth="260.0" text="Glitchbusters Orders" underline="true">
+            <font>
+                <Font name="Arial Bold" size="24.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="0.6303317535545023" endY="0.5308056872037915" startX="0.6303317535545024" startY="0.6303317535545023">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.5333333611488342" green="0.5411764979362488" blue="0.5803921818733215" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <TableView fx:id="tblOrders" layoutX="76.0" layoutY="72.0" onMouseClicked="#getAllDetails" prefHeight="417.0" prefWidth="797.0" stylesheets="@../design/TableStyle.css">
+            <columns>
+                <TableColumn fx:id="colOrderId" prefWidth="132.0" text="Order ID" />
+                <TableColumn fx:id="colOrderDetail" prefWidth="248.0" text="Order Details" />
+                <TableColumn fx:id="colDate" prefWidth="262.0" text="OrderDate" />
+            <TableColumn fx:id="colCusId" prefWidth="154.0" text="Customer ID" />
+            </columns>
+        </TableView>
+      <JFXButton layoutX="790.0" layoutY="502.0" onAction="#btnDeleteOrders" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #F03232;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="22.0">
+               <image>
+                  <Image url="@../icon/icons8-delete-30.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TextField fx:id="txtOrderID" layoutX="332.0" layoutY="517.0" visible="false" />
+    </children>
+</AnchorPane>

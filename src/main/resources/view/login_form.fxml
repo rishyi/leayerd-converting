@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="495.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.shop.controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="495.0" fitWidth="761.0">
+         <image>
+            <Image url="@../icon/pexels-lmay-785429.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtUserId" layoutX="240.0" layoutY="145.0" prefHeight="26.0" prefWidth="281.0" promptText="userd id" style="-fx-background-color: D5DBDB;" />
+      <TextField fx:id="txtPassword" layoutX="241.0" layoutY="202.0" prefHeight="26.0" prefWidth="281.0" promptText="Password" style="-fx-background-color: D5DBDB;" />
+      <Hyperlink layoutX="456.0" layoutY="332.0" onAction="#linkRegisterOnAction" prefHeight="24.0" prefWidth="66.0" text="Register" textFill="#82b4ff" textOverrun="CLIP">
+         <font>
+            <Font size="13.0" />
+         </font></Hyperlink>
+      <Hyperlink layoutX="324.0" layoutY="205.0" onAction="#btnForgetPassword" prefHeight="24.0" prefWidth="112.0" text="Forget password" visible="false" />
+      <Line endX="219.0" layoutX="325.0" layoutY="64.0" startX="-100.0" stroke="#44ff00" />
+      <JFXButton layoutX="321.0" layoutY="278.0" onAction="#btnOnLoginAction" prefHeight="42.0" prefWidth="119.0" stylesheets="@../design/buttonStyle.css" text="Login">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btn-1" />
+            <String fx:value="radius" />
+         </styleClass>
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="31.0">
+               <image>
+                  <Image url="@../icon/icons8-login-button-48.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <PasswordField fx:id="txtPasswordField" layoutX="241.0" layoutY="202.0" prefHeight="26.0" prefWidth="281.0" promptText="Password" style="-fx-background-color: D5DBDB;" />
+      <CheckBox fx:id="loginCheckBox" layoutX="238.0" layoutY="240.0" mnemonicParsing="false" onAction="#loginShowPassword" text="show password" textFill="WHITE" />
+      <Label layoutX="255.0" layoutY="14.0" prefHeight="58.0" prefWidth="281.0" text="GLITCHBUSTERS" textFill="#a44b4b">
+         <font>
+            <Font name="System Bold Italic" size="31.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import java.lang.String?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="574.0" prefWidth="948.0" styleClass="bg-color-1" stylesheets="@../../../../../final-project-1-/src/main/resources/design/CenterPane.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.shop.controller.RepotFormController">
+   <children>
+      <JFXButton layoutX="129.0" layoutY="73.0" onAction="#btnPrintAllOrders" prefHeight="60.0" prefWidth="159.0" stylesheets="@../design/reportButton.css" text="Orders Report">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="25.0">
+               <image>
+                  <Image url="@../icon/icons8-reports-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <styleClass>
+            <String fx:value="btn-orders" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="375.0" layoutY="73.0" onAction="#btnPrintAllcustomers" prefHeight="60.0" prefWidth="159.0" stylesheets="@../design/reportButton.css" text="Customer Report">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="32.0">
+               <image>
+                  <Image url="@../icon/icons8-customer-support-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <styleClass>
+            <String fx:value="btn-customers" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </JFXButton>
+      <JFXTextArea focusColor="#24bc66" layoutX="106.0" layoutY="192.0" prefHeight="295.0" prefWidth="696.0" style="-fx-background-color: #fff;" text="Thank you for choosing GlitchBusters as your go-to destination for all your technology needs since our inception in 2021. We are truly grateful for your continued support and trust in our products and services. At GlitchBusters, we strive to provide cutting-edge technology solutions, unparalleled customer service, and a seamless shopping experience to each and every one of our valued customers. As we move forward, we remain committed to exceeding your expectations and delivering innovative solutions that empower you in the digital world. Once again, thank you for being part of the GlitchBusters family. We look forward to serving you for many more years to come." unFocusColor="#e40202">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font>
+      </JFXTextArea>
+      <JFXButton layoutX="627.0" layoutY="73.0" onAction="#btnPrintAllItems" prefHeight="60.0" prefWidth="159.0" stylesheets="@../design/reportButton.css" text="Item Report">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../icon/icons8-graph-report-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <styleClass>
+            <String fx:value="btn-item" />
+            <String fx:value="shadow" />
+            <String fx:value="radius" />
+         </styleClass>
+      </JFXButton>
+   </children>
+</AnchorPane>

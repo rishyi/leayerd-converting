@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bfd14c64-2a0d-42d9-b3bc-d328ddb22a3e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM orders;]]>
+	</queryString>
+	<field name="o_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="o_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="o_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="details" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="details"/>
+		<property name="com.jaspersoft.studio.field.label" value="details"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="date"/>
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="c_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="c_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="c_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<group name="o_id">
+		<groupExpression><![CDATA[$F{o_id}]]></groupExpression>
+	</group>
+	<group name="details">
+		<groupExpression><![CDATA[$F{details}]]></groupExpression>
+	</group>
+	<group name="date">
+		<groupExpression><![CDATA[$F{date}]]></groupExpression>
+	</group>
+	<group name="c_id">
+		<groupExpression><![CDATA[$F{c_id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="150" y="0" width="283" height="40" uuid="ce3ed5db-d389-4c7d-be73-7732dc7b0967"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Glitchbusters Orders]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="9" width="110" height="20" uuid="28197f5c-3a00-403d-8d44-47b41fb6378a"/>
+				<box padding="2">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="9" width="130" height="20" uuid="6c0593aa-0970-4047-81cd-3aa1ad4a7a2b"/>
+				<box padding="2">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="9" width="130" height="20" uuid="dae36992-081d-44a9-95f8-25f46fe1bcc4"/>
+				<box padding="2">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="9" width="149" height="20" uuid="ad3c091c-ab49-493e-85f0-1ddc0675a1b6"/>
+				<box padding="2">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[customer ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="7" width="76" height="20" uuid="04493a1d-c0bd-4ea4-abad-aade2323aa79">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abbf71b7-cec2-42aa-a14e-38012516b68e"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{o_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="7" width="100" height="20" uuid="72162886-b2bb-4a8b-bcd7-90012ac9fdc8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="46dc890d-6de0-459a-b41c-8dcb8a06684d"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{details}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="7" width="100" height="20" uuid="f133bc50-752a-4749-b547-a1d9c821ac04">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd714fbc-63af-4998-85f3-6c85047a5748"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="7" width="95" height="20" uuid="420cb5df-3dc9-4817-b4ac-908815c75a6a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3748a1d-6ba1-4230-9dc2-32bf7151a7ca"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{c_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="13" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="66" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="60" width="380" height="20" uuid="c14618b6-e829-490b-b481-a8f44cb55f7f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Total number of orders: Sum of all orders placed within a specified period.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

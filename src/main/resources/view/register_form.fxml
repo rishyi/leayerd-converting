@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6B6D6B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.shop.controller.RegisterFormController">
+   <children>
+      <Label layoutX="143.0" layoutY="14.0" prefHeight="39.0" prefWidth="314.0" text="Glitchbusters Users Registration" textFill="WHITE" underline="true">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="72.0" layoutY="86.0" prefHeight="17.0" prefWidth="49.0" text="User ID" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="72.0" layoutY="141.0" prefHeight="17.0" prefWidth="49.0" text="name" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="72.0" layoutY="200.0" prefHeight="17.0" prefWidth="60.0" text="password" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUserID" layoutX="72.0" layoutY="103.0" prefHeight="25.0" prefWidth="393.0" promptText="user ID" />
+      <TextField fx:id="txtName" layoutX="72.0" layoutY="158.0" prefHeight="25.0" prefWidth="393.0" promptText="Name " />
+      <TextField fx:id="txtPassword" layoutX="72.0" layoutY="223.0" prefHeight="25.0" prefWidth="393.0" promptText="Password" />
+      <JFXButton layoutX="218.0" layoutY="271.0" onAction="#btnRegisterUser" prefHeight="32.0" prefWidth="164.0" style="-fx-background-color: #90DF77;" text="Register">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="14.0" layoutY="14.0" onAction="#btnBackToLogin" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #D0E579;" text="Back">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../icon/icons8-back-24.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,21 @@
+
+.bg-color-1{
+    -fx-background-color: linear-gradient(to bottom right, rgb(255, 255, 255), #918f8f);
+}
+
+
+.btn-1{
+    -fx-background-color: linear-gradient(to bottom right, rgb(236, 131, 26), #656060);
+    -fx-border-color: #4a8025;
+    -fx-border-width: 1px;
+    -fx-text-fill: #d5cb9e;
+    -fx-font-family: Arial;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+    -fx-background-radius: 4px;
+}
+
+.btn-1:hover{
+    -fx-background-color: linear-gradient(to bottom right, rgb(236, 146, 80), #656060);
+    -fx-text-fill: #000;
+}
