@@ -11,32 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRepo {
-    public static boolean addCustomer(Customer customer) throws SQLException {
-
-        String sql = "INSERT INTO customer VALUES(?,?,?)";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setObject(1,customer.getId());
-        preparedStatement.setObject(2,customer.getName());
-        preparedStatement.setObject(3,customer.getTelephone());
-
-        return preparedStatement.executeUpdate() > 0;
-    }
-
-    public static boolean updateCustomer(Customer customer) throws SQLException {
-        String sql = "UPDATE customer SET name=?,telephone=? WHERE c_id=?";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        preparedStatement.setString(1,customer.getName());
-        preparedStatement.setObject(2,customer.getTelephone());
-        preparedStatement.setObject(3,customer.getId());
-
-        return preparedStatement.executeUpdate() > 0;
-    }
-
     public static List<Customer> findAll() throws SQLException {
         String sql = "SELECT * FROM customer";
 

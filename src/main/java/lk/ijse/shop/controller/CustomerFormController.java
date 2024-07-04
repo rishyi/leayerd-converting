@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.shop.Repository.CustomerRepo;
 import lk.ijse.shop.Util.Regex;
+import lk.ijse.shop.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.shop.model.Customer;
 import lk.ijse.shop.model.ItemTm.CustomerTm;
 
@@ -87,6 +88,7 @@ public class CustomerFormController {
         String cusID = txtCusID.getText();
         String cusName = txtCusName.getText();
         String cusTele = txtCusTele.getText();
+        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
         if (cusID.isEmpty() || cusName.isEmpty()) {
         new Alert(Alert.AlertType.ERROR,"Customer ID and Name cannot be empty").show();
@@ -97,12 +99,12 @@ public class CustomerFormController {
         Customer customer = new Customer(cusID, cusName, cusTele);
 
         try {
-            boolean isAded = CustomerRepo.addCustomer(customer);
+            boolean isAded = customerDAO.add(customer);
             if (isAded) {
                 new Alert(Alert.AlertType.CONFIRMATION,"Customer Added Successfully").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }finally {
             loadAllItems();
@@ -127,6 +129,7 @@ public class CustomerFormController {
         String cusID = txtCusID.getText();
         String cusName = txtCusName.getText();
         String cusTele = txtCusTele.getText();
+        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
         if (cusID.isEmpty() || cusName.isEmpty()) {
             new Alert(Alert.AlertType.ERROR,"Customer ID and Name cannot be empty").show();
@@ -138,12 +141,12 @@ public class CustomerFormController {
         Customer customer = new Customer(cusID, cusName, cusTele);
 
         try {
-            boolean isUpdated = CustomerRepo.updateCustomer(customer);
+            boolean isUpdated = customerDAO.update(customer);
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated Successfully").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }finally {
             loadAllItems();

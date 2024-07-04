@@ -17,5 +17,4 @@ public class Order {
         private Date date;
         private String c_id;
 
-
 }
