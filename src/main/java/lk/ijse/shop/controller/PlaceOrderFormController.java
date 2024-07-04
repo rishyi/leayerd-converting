@@ -19,6 +19,7 @@ import lk.ijse.shop.Repository.CustomerRepo;
 import lk.ijse.shop.Repository.ItemRepo;
 import lk.ijse.shop.Repository.OrderRepo;
 import lk.ijse.shop.Repository.PlaceOrderRepo;
+import lk.ijse.shop.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.shop.model.*;
 import lk.ijse.shop.model.ItemTm.CartTm;
 import lk.ijse.shop.model.ItemTm.CustomerTm;
@@ -112,6 +113,8 @@ public class PlaceOrderFormController {
     private TextField txtQty;
 
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
+
+    CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
     public void initialize() {
         setDate();
@@ -289,7 +292,7 @@ public class PlaceOrderFormController {
     void cmbCustomerOnAction(ActionEvent event) {
         String id = cmbCustomerID.getValue();
         try {
-            Customer customer = CustomerRepo.searchById(id);
+            Customer customer = customerDAO.searchById(id);
 
             lblCustomerName.setText(customer.getName());
         } catch (SQLException e) {
@@ -318,9 +321,10 @@ public class PlaceOrderFormController {
 
     @SneakyThrows
     @FXML
-    void onCustomerContactTyping(KeyEvent event) {
+    void onCustomerContactTyping(KeyEvent event) throws SQLException, ClassNotFoundException {
+        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
         String text = customerContactfield.getText();
-        List<Customer> all = CustomerRepo.findAll();
+        List<Customer> all = customerDAO.findAll();
         for (Customer customer : all) {
             if (customer.getTelephone().equals(text)){
                 lblCustomerName.setText(customer.getName());

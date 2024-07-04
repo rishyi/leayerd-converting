@@ -11,24 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRepo {
-    public static List<Customer> findAll() throws SQLException {
-        String sql = "SELECT * FROM customer";
-
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        List<Customer> customers = new ArrayList<>();
-
-        while (resultSet.next()) {
-            String c_id = resultSet.getString(1);
-            String name = resultSet.getString(2);
-            String telephone = resultSet.getString(3);
-
-            Customer customer = new Customer(c_id,name,telephone);
-            customers.add(customer);
-        }
-        return customers;
-    }
+   
     public static List<String> getIds() throws SQLException {
         String sql = "SELECT c_id FROM CUSTOMER";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);

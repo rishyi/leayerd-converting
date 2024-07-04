@@ -65,10 +65,11 @@ public class CustomerFormController {
     }
 
     private void loadAllItems() {
+        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
         ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Customer> customerList = CustomerRepo.findAll();
+            List<Customer> customerList = customerDAO.findAll();
             for (Customer customer : customerList) {
                 CustomerTm customerTm = new CustomerTm(
                         customer.getId(),
@@ -78,7 +79,7 @@ public class CustomerFormController {
                 obList.add(customerTm);
             }
             tblCustomer.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
