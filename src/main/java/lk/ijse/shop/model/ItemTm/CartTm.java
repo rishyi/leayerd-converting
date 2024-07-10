@@ -17,4 +17,5 @@ public class CartTm {
     private double UnitPrice;
     private double total;
     private JFXButton btnRemove;
+
 }

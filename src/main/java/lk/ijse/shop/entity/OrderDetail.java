@@ -1,9 +1,8 @@
-package lk.ijse.shop.model;
+package lk.ijse.shop.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,5 +13,8 @@ public class OrderDetail {
     private String details;
     private int qty;
     private double unitPrice;
+    private String itemID;
 
+    public OrderDetail(String orderID, String itemCode, String details, int qty, double unitPrice) {
+    }
 }

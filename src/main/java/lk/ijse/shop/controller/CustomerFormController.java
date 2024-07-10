@@ -17,7 +17,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.shop.Repository.CustomerRepo;
 import lk.ijse.shop.Util.Regex;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.CustomerBO;
 import lk.ijse.shop.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.shop.dto.CustomerDTO;
 import lk.ijse.shop.model.Customer;
 import lk.ijse.shop.model.ItemTm.CustomerTm;
 
@@ -52,6 +55,8 @@ public class CustomerFormController {
 
     @FXML
     private TextField txtCusTele;
+
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
 
     public void initialize() {
         setCellValueFactory();
@@ -97,10 +102,8 @@ public class CustomerFormController {
         }
 
         if (isValid()){
-        Customer customer = new Customer(cusID, cusName, cusTele);
-
         try {
-            boolean isAded = customerDAO.add(customer);
+            boolean isAded =  customerBO.addCustomer(new CustomerDTO(cusID,cusName,cusTele));
             if (isAded) {
                 new Alert(Alert.AlertType.CONFIRMATION,"Customer Added Successfully").show();
                 clearFields();
@@ -142,7 +145,7 @@ public class CustomerFormController {
         Customer customer = new Customer(cusID, cusName, cusTele);
 
         try {
-            boolean isUpdated = customerDAO.update(customer);
+            boolean isUpdated = customerBO.updateCustomer(new CustomerDTO(cusID,cusName,cusTele));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated Successfully").show();
                 clearFields();

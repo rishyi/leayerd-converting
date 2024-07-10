@@ -1,4 +1,4 @@
-package lk.ijse.shop.model;
+package lk.ijse.shop.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

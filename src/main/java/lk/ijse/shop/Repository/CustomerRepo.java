@@ -24,25 +24,6 @@ public class CustomerRepo {
         return idList;
     }
 
-    public static Customer searchById(String id) throws SQLException {
-        String sql = "SELECT * FROM customer WHERE c_id=?";
-
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setObject(1,id);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            String c_id = resultSet.getString(1);
-            String name = resultSet.getString(2);
-            String telephone = resultSet.getString(3);
-
-            Customer customer = new Customer(c_id,name,telephone);
-
-            return customer;
-        }
-        return null;
-    }
-
     public static List<String> getCustomerTelephone() throws SQLException {
         String sql = "SELECT telephone FROM CUSTOMER";
 

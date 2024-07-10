@@ -4,8 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,14 +12,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import lk.ijse.shop.Repository.ItemRepo;
 import lk.ijse.shop.Util.Regex;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.ItemBO;
+import lk.ijse.shop.dao.DAOFactory;
+import lk.ijse.shop.dao.custom.ItemDAO;
+import lk.ijse.shop.dto.ItemDTO;
 import lk.ijse.shop.model.Item;
 import lk.ijse.shop.model.ItemTm.ItemTm;
 
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -62,6 +63,7 @@ public class ItemFormController {
 
     @FXML
     private TextField txtQty;
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
 
     public void initialize(){
         setCellValuerFactory();
@@ -98,7 +100,7 @@ public class ItemFormController {
     }
 
     @FXML
-    void btnAddItem(ActionEvent event) {
+    void btnAddItem(ActionEvent event) throws SQLException, ClassNotFoundException {
         String itemCode = txtCode.getText();
         String itemName = txtName.getText();
         String itemQty = txtQty.getText();
@@ -116,16 +118,12 @@ public class ItemFormController {
 
         if (isValid()) {
 
-            Item item = new Item(itemCode, itemName, itemQty, itemDescription, itemUnitPrice);
-
             try {
-                boolean isSaved = ItemRepo.save(item);
+                boolean isSaved =  itemBO.addItem(new ItemDTO(itemCode,itemName,itemQty,itemDescription,itemUnitPrice));
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Item added successfully").show();
                     clearFields();
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             } finally {
                 loadAllItems();
             }
@@ -135,10 +133,10 @@ public class ItemFormController {
     }
 
     @FXML
-    void itemSearchOnAction(ActionEvent event) throws SQLException {
+    void itemSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String itemCode = txtCode.getText();
 
-        Item item = ItemRepo.searchById(itemCode);
+        Item item = itemBO.searchItem(itemCode);
         if (item != null) {
             txtCode.setText(item.getId());
             txtName.setText(item.getItemName());
@@ -164,16 +162,14 @@ public class ItemFormController {
             return;
         }
 
-        Item item = new Item(itemCode, itemName, itemQty, itemDescription, itemUnitPrice);
-
         try {
-            boolean isUpdated = ItemRepo.update(item);
+            boolean isUpdated = itemBO.updateItem(new ItemDTO(itemCode,itemName,itemQty,itemDescription,itemUnitPrice));
             if (isUpdated) {
                 tblItem.refresh();
                 new Alert(Alert.AlertType.CONFIRMATION, "Item updated successfully").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }finally {
             loadAllItems();
@@ -185,13 +181,13 @@ public class ItemFormController {
         String itemCode =txtCode.getText();
 
         try {
-            boolean isDeleted = ItemRepo.delete(itemCode);
+            boolean isDeleted = itemBO.deleteItem(itemCode);
             if (isDeleted) {
 
                 new Alert(Alert.AlertType.CONFIRMATION, "Item deleted successfully").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         } finally {
             loadAllItems();

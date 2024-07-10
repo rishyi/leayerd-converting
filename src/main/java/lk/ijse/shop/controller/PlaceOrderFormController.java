@@ -15,23 +15,23 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import lk.ijse.shop.Repository.CustomerRepo;
 import lk.ijse.shop.Repository.ItemRepo;
 import lk.ijse.shop.Repository.OrderRepo;
 import lk.ijse.shop.Repository.PlaceOrderRepo;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.ItemBO;
 import lk.ijse.shop.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.shop.model.*;
 import lk.ijse.shop.model.ItemTm.CartTm;
-import lk.ijse.shop.model.ItemTm.CustomerTm;
 import lombok.SneakyThrows;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class PlaceOrderFormController {
 
@@ -116,6 +116,8 @@ public class PlaceOrderFormController {
 
     CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
+
     public void initialize() {
         setDate();
         getCurrentOrderId();
@@ -127,11 +129,11 @@ public class PlaceOrderFormController {
 
     private void loadCustomerAllTel(){
         try {
-            List<String> cusTel = CustomerRepo.getCustomerTelephone();
+            List<String> cusTel =customerDAO.getCustomerTelephone();
             String[] posibleName =cusTel.toArray(new String[0]);
 
             TextFields.bindAutoCompletion(customerContactfield,posibleName);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK).show();
         }
     }
@@ -163,14 +165,14 @@ public class PlaceOrderFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = CustomerRepo.getIds();
+            List<String> idList = customerDAO.getIds();
 
             for (String id : idList) {
                 obList.add(id);
             }
             cmbCustomerID.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -260,7 +262,7 @@ public class PlaceOrderFormController {
 
     @SneakyThrows
     @FXML
-    void btnPlaceOrderAction(ActionEvent event) {
+    void btnPlaceOrderAction(ActionEvent event) throws SQLException, IOException {
         String orderID = lblOrderID.getText();
         String  orderDetails = lblDetails.getText();
         Date date = Date.valueOf(lblOrderDate.getText());
@@ -292,10 +294,10 @@ public class PlaceOrderFormController {
     void cmbCustomerOnAction(ActionEvent event) {
         String id = cmbCustomerID.getValue();
         try {
-            Customer customer = customerDAO.searchById(id);
+            Customer customer = customerDAO.search(id);
 
             lblCustomerName.setText(customer.getName());
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -305,7 +307,7 @@ public class PlaceOrderFormController {
         String code = cmbItemID.getValue();
 
         try {
-            Item item = ItemRepo.searchById(code);
+            Item item = itemBO.searchItem(code);
             if (item != null){
                 lblItemName.setText(item.getItemName());
                 lblQtyOnHand.setText(String.valueOf(item.getQtyOnHand()));
@@ -313,7 +315,7 @@ public class PlaceOrderFormController {
                 lblUnitPrice.setText(String.valueOf(item.getUnitPrice()));
             }
             txtQty.requestFocus();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

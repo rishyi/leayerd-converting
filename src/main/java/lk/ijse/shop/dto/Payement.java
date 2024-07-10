@@ -1,20 +1,20 @@
-package lk.ijse.shop.model.ItemTm;
+package lk.ijse.shop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.sql.Date;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-@ToString
-public class OrderTm {
+
+public class Payement {
+
     private String id;
-    private String details;
+    private double price;
     private Date date;
-    private String c_id;
+    private String o_id;
 
 }
