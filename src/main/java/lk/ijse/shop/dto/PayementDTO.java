@@ -10,7 +10,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @Data
 
-public class Payement {
+public class PayementDTO {
 
     private String id;
     private double price;

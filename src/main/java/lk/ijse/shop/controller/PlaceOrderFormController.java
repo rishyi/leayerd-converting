@@ -19,6 +19,7 @@ import lk.ijse.shop.Repository.ItemRepo;
 import lk.ijse.shop.Repository.OrderRepo;
 import lk.ijse.shop.Repository.PlaceOrderRepo;
 import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.CustomerBO;
 import lk.ijse.shop.bo.custom.ItemBO;
 import lk.ijse.shop.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.shop.model.*;
@@ -114,7 +115,7 @@ public class PlaceOrderFormController {
 
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
-    CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
 
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
 
@@ -129,7 +130,7 @@ public class PlaceOrderFormController {
 
     private void loadCustomerAllTel(){
         try {
-            List<String> cusTel =customerDAO.getCustomerTelephone();
+            List<String> cusTel =customerBO.getCustomerTelephone();
             String[] posibleName =cusTel.toArray(new String[0]);
 
             TextFields.bindAutoCompletion(customerContactfield,posibleName);
@@ -151,12 +152,12 @@ public class PlaceOrderFormController {
     private void getItemId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> idList = ItemRepo.findAllItemId();
+            List<String> idList = itemBO.findAllItemIds();
             for (String id : idList) {
                 obList.add(id);
             }
             cmbItemID.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -165,7 +166,7 @@ public class PlaceOrderFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = customerDAO.getIds();
+            List<String> idList = customerBO.getIds();
 
             for (String id : idList) {
                 obList.add(id);
@@ -294,7 +295,7 @@ public class PlaceOrderFormController {
     void cmbCustomerOnAction(ActionEvent event) {
         String id = cmbCustomerID.getValue();
         try {
-            Customer customer = customerDAO.search(id);
+            Customer customer = customerBO.searchCustomer(id);
 
             lblCustomerName.setText(customer.getName());
         } catch (SQLException | ClassNotFoundException e) {

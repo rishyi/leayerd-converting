@@ -82,7 +82,7 @@ public class ItemFormController {
         ObservableList<ItemTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Item> itemList = ItemRepo.findAll();
+            List<Item> itemList = itemBO.findAll();
             for (Item item : itemList) {
                 ItemTm itemTm = new ItemTm(
                         item.getId(),
@@ -94,7 +94,7 @@ public class ItemFormController {
                 obList.add(itemTm);
             }
             tblItem.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

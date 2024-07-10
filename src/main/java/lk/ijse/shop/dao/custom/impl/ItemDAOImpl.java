@@ -2,9 +2,11 @@ package lk.ijse.shop.dao.custom.impl;
 
 import lk.ijse.shop.dao.SQLUtil;
 import lk.ijse.shop.dao.custom.ItemDAO;
-import lk.ijse.shop.model.Customer;
+import lk.ijse.shop.db.DbConnection;
 import lk.ijse.shop.model.Item;
+import lk.ijse.shop.model.OrderDetail;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +16,13 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public ArrayList<Item> findAll() throws SQLException, ClassNotFoundException {
-        return null;
+        ArrayList<Item> allItem = new ArrayList<>();
+        ResultSet rst = SQLUtil.execute("SELECT * FROM item");
+        while (rst.next()){
+            Item item  = new Item(rst.getNString(1), rst.getNString(2), rst.getNString(3), rst.getNString(4),rst.getDouble(5));
+            allItem.add(item);
+        }
+        return allItem;
     }
 
     @Override
@@ -39,8 +47,22 @@ public class ItemDAOImpl implements ItemDAO {
         return new Item(id + "", rst.getString("item_name"),rst.getString("qty_on_hand"),rst.getString("details"),rst.getDouble("unit_price"));
     }
 
+
     @Override
-    public List<String> getIds() throws SQLException {
-        return List.of();
+    public List<String> findAllItemIds() throws SQLException, ClassNotFoundException {
+        ArrayList<String> ItemIds = new ArrayList<>();
+        ResultSet rst = SQLUtil.execute("SELECT i_id FROM item");
+        while (rst.next()){
+            String itemId = rst.getNString(1);
+            ItemIds.add(itemId);
+        }
+        return ItemIds;
     }
+
+    @Override
+    public boolean qtyUpdate(String itemCode, int qty) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("UPDATE item SET qty_on_hand = qty_on_hand - ? WHERE i_id = ?");
+//        not comple
+    }
+
 }

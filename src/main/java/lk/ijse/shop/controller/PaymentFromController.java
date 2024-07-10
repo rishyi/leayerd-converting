@@ -15,6 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.shop.Repository.PaymentRepo;
 import lk.ijse.shop.Util.Regex;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.PaymentBO;
+import lk.ijse.shop.dto.PayementDTO;
 import lk.ijse.shop.model.ItemTm.PaymentTm;
 import lk.ijse.shop.model.Order;
 import lk.ijse.shop.model.Payement;
@@ -57,6 +60,8 @@ public class PaymentFromController {
     @FXML
     private TextField txtPrice;
 
+    PaymentBO paymentBO = (PaymentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PAYMENT);
+
     public void initialize() {
         setCellValuerFactory();
         loadAllPayments();
@@ -79,7 +84,7 @@ public class PaymentFromController {
         ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Payement> payementList = PaymentRepo.findAll();
+            List<Payement> payementList = paymentBO.findAllPayment();
             for (Payement payement: payementList) {
                 PaymentTm paymentTm = new PaymentTm(
                         payement.getId(),
@@ -90,7 +95,7 @@ public class PaymentFromController {
                 obList.add(paymentTm);
             }
             tblPayment.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -103,16 +108,16 @@ public class PaymentFromController {
         String o_id = txtOrderId.getText();
 
         if (isValid()) {
-            Payement payement = new Payement(paymentId, price, date, o_id);
-
             try {
-                boolean isSaved = PaymentRepo.save(payement);
+                boolean isSaved = paymentBO.addPayment(new PayementDTO(paymentId,price,date,o_id));
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Payment Successfully Added").show();
                     clearFields();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
+            }finally {
+                loadAllPayments();
             }
             int i = Integer.parseInt(netTotal);
             System.out.println(i);
@@ -123,6 +128,7 @@ public class PaymentFromController {
         }else {
             new Alert(Alert.AlertType.INFORMATION,"Insert Valid date").show();
         }
+
     }
 
     @FXML
@@ -142,12 +148,15 @@ public class PaymentFromController {
         String paymentId = txtPaymentId.getText();
 
         try {
-            boolean isDeleted = PaymentRepo.delete(paymentId);
+            boolean isDeleted = paymentBO.deletePayment(paymentId);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION,"Payment Successfully Deleted").show();
+                clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }finally {
+            loadAllPayments();
         }
     }
 
@@ -166,16 +175,16 @@ public class PaymentFromController {
             new Alert(Alert.AlertType.INFORMATION,"Payment Price enter").show();
             return;
         }
-
-        Payement payement = new Payement(paymentId, price, date, o_id);
-
         try {
-            boolean isUpdated = PaymentRepo.update(payement);
+            boolean isUpdated = paymentBO.updatePayment(new PayementDTO(paymentId,price,date,o_id));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION,"Payment Successfully Updated").show();
+                clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }finally {
+            loadAllPayments();
         }
     }
 

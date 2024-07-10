@@ -6,6 +6,7 @@ import lk.ijse.shop.model.Customer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface CustomerBO extends SuperBO {
 
@@ -17,5 +18,7 @@ public interface CustomerBO extends SuperBO {
 
     Customer searchCustomer(String id) throws SQLException, ClassNotFoundException;
 
-    ArrayList<CustomerDTO> getCustomerTelephone() throws SQLException, ClassNotFoundException;
+    List<String> getCustomerTelephone() throws SQLException, ClassNotFoundException;
+
+    public List<String> getIds() throws SQLException, ClassNotFoundException;
 }

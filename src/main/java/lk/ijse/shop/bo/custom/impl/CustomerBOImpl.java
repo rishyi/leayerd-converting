@@ -8,6 +8,7 @@ import lk.ijse.shop.model.Customer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerBOImpl implements CustomerBO {
     CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
@@ -40,13 +41,13 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public ArrayList<CustomerDTO> getCustomerTelephone() throws SQLException, ClassNotFoundException {
-        ArrayList<CustomerDTO> allTel = new ArrayList<>();
-        ArrayList<String> allTelephone = (ArrayList<String>) customerDAO.getCustomerTelephone();
-        for(String c : allTelephone){
-           // allTel.add(new Customer());
-        }
-        return allTel;
+    public List<String> getCustomerTelephone() throws SQLException, ClassNotFoundException {
+        return customerDAO.getCustomerTelephone();
+    }
+
+    @Override
+    public List<String> getIds() throws SQLException, ClassNotFoundException {
+        return customerDAO.getIds();
     }
 
 }

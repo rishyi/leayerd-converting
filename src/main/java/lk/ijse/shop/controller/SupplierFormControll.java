@@ -14,6 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.shop.Repository.SupplierRepo;
 import lk.ijse.shop.Util.Regex;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.CustomerBO;
+import lk.ijse.shop.bo.custom.SupplierBo;
+import lk.ijse.shop.dto.SupplierDTO;
 import lk.ijse.shop.model.ItemTm.SupplierTm;
 import lk.ijse.shop.model.Supplier;
 
@@ -52,6 +56,8 @@ public class SupplierFormControll {
     @FXML
     private TextField txtSupMobile;
 
+    SupplierBo supplierBo = (SupplierBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SUPPLIER);
+
     public void initialize() {
         setCellValuerFactory();
         loadAllSupplier();
@@ -68,7 +74,7 @@ public class SupplierFormControll {
         ObservableList<SupplierTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Supplier> supplierList = SupplierRepo.findAll();
+            List<Supplier> supplierList = supplierBo.findAll();
             for (Supplier supplier : supplierList) {
                 SupplierTm supplierTm = new SupplierTm(
                         supplier.getId(),
@@ -79,7 +85,7 @@ public class SupplierFormControll {
                 obList.add(supplierTm);
             }
             tblSupplier.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -100,15 +106,13 @@ public class SupplierFormControll {
         }
 
         if (isValid()) {
-            Supplier supplier = new Supplier(supplierId, supplierName, supplierMobile, supplierDescription);
-
-            try {
-                boolean isSaved = SupplierRepo.save(supplier);
+          try {
+                boolean isSaved =  supplierBo.addSupplier(new SupplierDTO(supplierId,supplierName,supplierMobile,supplierDescription));
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added Successfully").show();
                     clearFields();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             } finally {
                 loadAllSupplier();
@@ -135,12 +139,12 @@ public class SupplierFormControll {
         String supId = txtSupId.getText();
 
         try {
-            boolean isDeleted = SupplierRepo.delete(supId);
+            boolean isDeleted = supplierBo.deleteSupplier(supId);
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION,"Supplier Deleted Successfully").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }finally {
             loadAllSupplier();
@@ -162,16 +166,13 @@ public class SupplierFormControll {
             new Alert(Alert.AlertType.INFORMATION,"Supplier Name or Supplier Mobile is Required").show();
             return;
         }
-
-        Supplier supplier = new Supplier(supId, supName, supMobile, supDescription);
-
         try {
-            boolean isUpdated = SupplierRepo.update(supplier);
+            boolean isUpdated  = supplierBo.updateSupplier(new SupplierDTO(supId,supName,supMobile,supDescription));
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION,"Supplier Updated Successfully").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }finally {
             loadAllSupplier();
