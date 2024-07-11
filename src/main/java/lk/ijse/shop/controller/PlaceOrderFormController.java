@@ -15,13 +15,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import lk.ijse.shop.Repository.ItemRepo;
-import lk.ijse.shop.Repository.OrderRepo;
-import lk.ijse.shop.Repository.PlaceOrderRepo;
 import lk.ijse.shop.bo.BOFactory;
 import lk.ijse.shop.bo.custom.CustomerBO;
 import lk.ijse.shop.bo.custom.ItemBO;
 import lk.ijse.shop.bo.custom.OrderBO;
+import lk.ijse.shop.bo.custom.PlaceOrderBO;
 import lk.ijse.shop.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.shop.model.*;
 import lk.ijse.shop.model.ItemTm.CartTm;
@@ -121,6 +119,8 @@ public class PlaceOrderFormController {
     ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
 
     OrderBO orderBO = (OrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDER);
+
+    PlaceOrderBO placeOrderBO = (PlaceOrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDERDETAIL);
 
     public void initialize() {
         setDate();
@@ -281,7 +281,7 @@ public class PlaceOrderFormController {
         }
 
         PlaceOrder placeOrder = new PlaceOrder(order,arrayList);
-        boolean b = PlaceOrderRepo.placeOrder(placeOrder);
+        boolean b = placeOrderBO.placeOrder(placeOrder);
         if (b){
             new Alert(Alert.AlertType.INFORMATION,"Saved").show();
             Stage stage =new Stage();

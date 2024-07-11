@@ -13,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.shop.Repository.PaymentRepo;
 import lk.ijse.shop.Util.Regex;
 import lk.ijse.shop.bo.BOFactory;
 import lk.ijse.shop.bo.custom.PaymentBO;

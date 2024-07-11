@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.shop.Repository.OrderRepo;
 import lk.ijse.shop.bo.BOFactory;
 import lk.ijse.shop.bo.custom.OrderBO;
 import lk.ijse.shop.model.ItemTm.OrderTm;

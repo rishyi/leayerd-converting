@@ -15,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.shop.Repository.CustomerRepo;
 import lk.ijse.shop.Util.Regex;
 import lk.ijse.shop.bo.BOFactory;
 import lk.ijse.shop.bo.custom.CustomerBO;
@@ -24,8 +23,6 @@ import lk.ijse.shop.dto.CustomerDTO;
 import lk.ijse.shop.model.Customer;
 import lk.ijse.shop.model.ItemTm.CustomerTm;
 
-import javax.swing.event.ChangeListener;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 

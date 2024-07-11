@@ -2,11 +2,7 @@ package lk.ijse.shop.dao.custom.impl;
 
 import lk.ijse.shop.dao.SQLUtil;
 import lk.ijse.shop.dao.custom.ItemDAO;
-import lk.ijse.shop.db.DbConnection;
 import lk.ijse.shop.model.Item;
-import lk.ijse.shop.model.OrderDetail;
-
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,8 +57,7 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public boolean qtyUpdate(String itemCode, int qty) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("UPDATE item SET qty_on_hand = qty_on_hand - ? WHERE i_id = ?");
-//        not comple
+        return false;
     }
 
 }

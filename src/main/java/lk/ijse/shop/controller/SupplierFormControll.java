@@ -12,7 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.shop.Repository.SupplierRepo;
 import lk.ijse.shop.Util.Regex;
 import lk.ijse.shop.bo.BOFactory;
 import lk.ijse.shop.bo.custom.CustomerBO;
