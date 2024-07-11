@@ -11,7 +11,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @ToString
 @Data
-public class Order {
+public class OrderDTO {
         private String id;
         private String details;
         private Date date;

@@ -25,6 +25,8 @@ public class DAOFactory {
                 return new SupplierDAOImpl();
             case PAYMENT:
                 return new PaymentDAOImpl();
+            case ORDER:
+                return new OrderDAOImpl();
             default:
                 return null;
         }

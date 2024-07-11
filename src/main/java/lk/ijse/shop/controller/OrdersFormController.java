@@ -12,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.shop.Repository.OrderRepo;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.OrderBO;
 import lk.ijse.shop.model.ItemTm.OrderTm;
 import lk.ijse.shop.model.Order;
 import net.sf.jasperreports.engine.*;
@@ -46,6 +48,8 @@ public class OrdersFormController {
     @FXML
     private TableView<OrderTm> tblOrders;
 
+    OrderBO orderBO = (OrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDER);
+
     @FXML
     void getAllDetails(MouseEvent event) {
         tblOrders.getSelectionModel().selectedItemProperty().addListener((obs,oldSelection,newSelection) -> {
@@ -72,7 +76,7 @@ public class OrdersFormController {
         ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Order> orderList = OrderRepo.GetAll();
+            List<Order> orderList = orderBO.findAllOrders();
             for (Order order : orderList) {
                 OrderTm orderTm = new OrderTm(
                         order.getId(),
@@ -83,7 +87,7 @@ public class OrdersFormController {
                 obList.add(orderTm);
             }
             tblOrders.setItems(obList);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -92,11 +96,11 @@ public class OrdersFormController {
             String OrderId = txtOrderID.getText();
 
             try {
-                boolean isDeleted = OrderRepo.delete(OrderId);
+                boolean isDeleted = orderBO.deleteOrder(OrderId);
                 if (isDeleted) {
                     new Alert(Alert.AlertType.CONFIRMATION,"Order Deleted").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }finally {
                 loadAllOrders();
