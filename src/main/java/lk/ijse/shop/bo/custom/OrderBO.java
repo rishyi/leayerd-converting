@@ -18,4 +18,6 @@ public interface OrderBO extends SuperBO {
     public ArrayList<Order> findAllOrders() throws SQLException, ClassNotFoundException;
 
     public String getCurrentId() throws SQLException, ClassNotFoundException;
+
+    public int getOrderCount() throws SQLException, ClassNotFoundException;
 }

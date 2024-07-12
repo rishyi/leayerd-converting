@@ -21,4 +21,6 @@ public interface CustomerBO extends SuperBO {
     List<String> getCustomerTelephone() throws SQLException, ClassNotFoundException;
 
     public List<String> getIds() throws SQLException, ClassNotFoundException;
+
+    public int getCustomerCount() throws SQLException, ClassNotFoundException;
 }

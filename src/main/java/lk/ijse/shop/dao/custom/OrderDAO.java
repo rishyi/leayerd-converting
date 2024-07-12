@@ -7,4 +7,6 @@ import java.sql.SQLException;
 
 public interface OrderDAO extends CrudDAO<Order> {
     public String getCurrentId() throws SQLException,ClassNotFoundException;
+    int getOrderCount() throws SQLException,ClassNotFoundException;
 }
+

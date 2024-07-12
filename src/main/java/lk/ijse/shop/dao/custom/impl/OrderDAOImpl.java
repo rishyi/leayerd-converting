@@ -49,4 +49,13 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return null;
     }
+
+    @Override
+    public int getOrderCount() throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.executeQuery("select count(*) as order_count from orders");
+        if (rst.next()){
+            return rst.getInt("order_count");
+        }
+        return 0;
+    }
 }

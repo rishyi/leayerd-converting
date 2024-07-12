@@ -13,7 +13,7 @@ public class BOFactory {
     }
 
     public enum BOTypes {
-        CUSTOMER, ITEM,SUPPLIER,PAYMENT,ORDER,ORDERDETAIL
+        CUSTOMER, ITEM,SUPPLIER,PAYMENT,ORDER,ORDERDETAIL,HOME
     }
 
     public SuperBO getBO(BOTypes types) {

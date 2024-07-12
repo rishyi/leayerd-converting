@@ -1,7 +1,7 @@
 package lk.ijse.shop.bo.custom.impl;
 
-import lk.ijse.shop.Repository.ItemRepo;
 import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.ItemBO;
 import lk.ijse.shop.bo.custom.OrderBO;
 import lk.ijse.shop.bo.custom.PlaceOrderBO;
 import lk.ijse.shop.dao.DAOFactory;
@@ -15,11 +15,11 @@ import java.sql.SQLException;
 
 public class PlaceOrderBOImpl implements PlaceOrderBO {
 
-    OrderBO orderBO = (OrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDER);
-
     OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
 
     OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDERDETAIL);
+
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
 
     public  boolean placeOrder(PlaceOrder po) throws SQLException {
         Connection conn = DbConnection.getInstance().getConnection();
@@ -28,7 +28,7 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
         try {
             boolean isOrderSaved = orderDAO.add(po.getOrder());
             if (isOrderSaved) {
-                boolean isQtyUpdated = ItemRepo.update(po.getOdList());
+                boolean isQtyUpdated = itemBO.updateLive(po.getOdList());
                 if (isQtyUpdated) {
                     boolean isOrderDetailSaved = orderDetailDAO.save(po.getOdList());
                     if (isOrderDetailSaved) {

@@ -64,4 +64,13 @@ public class CustomerDAOImpl implements CustomerDAO  {
         }
         return idList;
     }
+
+    @Override
+    public int getCustomerCount() throws SQLException, ClassNotFoundException {
+        ResultSet rs = SQLUtil.executeQuery("select count(*) as customer_count from customer");
+        if (rs.next()){
+            return rs.getInt("customer_count");
+        }
+        return 0;
+    }
 }

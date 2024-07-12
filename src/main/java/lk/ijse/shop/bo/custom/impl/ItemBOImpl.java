@@ -6,6 +6,7 @@ import lk.ijse.shop.dao.custom.ItemDAO;
 import lk.ijse.shop.dto.ItemDTO;
 import lk.ijse.shop.model.Customer;
 import lk.ijse.shop.model.Item;
+import lk.ijse.shop.model.OrderDetail;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,6 +50,23 @@ public class ItemBOImpl implements ItemBO {
     @Override
     public List<String> findAllItemIds() throws SQLException, ClassNotFoundException {
         return itemDAO.findAllItemIds();
+    }
+
+    @Override
+    public boolean updateLive(List<OrderDetail> odList) throws SQLException, ClassNotFoundException {
+        for (OrderDetail od : odList){
+            boolean isUpdateQty = itemDAO.qtyUpdate(od.getItemID(),od.getQty());
+            if(!isUpdateQty){
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    @Override
+    public int getItemCount() throws SQLException, ClassNotFoundException {
+        return itemDAO.getItemCount();
     }
 
 

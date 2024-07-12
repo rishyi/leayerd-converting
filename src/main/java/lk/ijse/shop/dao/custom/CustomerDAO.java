@@ -9,5 +9,6 @@ import java.util.List;
 public interface CustomerDAO extends CrudDAO<Customer> {
     public List<String> getCustomerTelephone() throws SQLException, ClassNotFoundException;
     public List<String> getIds() throws SQLException, ClassNotFoundException;
+    int getCustomerCount() throws SQLException,ClassNotFoundException;
 
 }

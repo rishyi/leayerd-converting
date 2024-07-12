@@ -28,6 +28,11 @@ public class OrderBOImpl implements OrderBO {
     }
 
     @Override
+    public int getOrderCount() throws SQLException, ClassNotFoundException {
+        return orderDAO.getOrderCount();
+    }
+
+    @Override
     public boolean addOrder(OrderDTO order) throws SQLException, ClassNotFoundException {
         return orderDAO.add(new Order(order.getId(),order.getDetails(),order.getDate(),order.getC_id()));
     }

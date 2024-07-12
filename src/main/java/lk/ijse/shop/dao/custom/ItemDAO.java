@@ -10,5 +10,5 @@ import java.util.List;
 public interface ItemDAO extends CrudDAO<Item> {
     public  List<String> findAllItemIds() throws SQLException,ClassNotFoundException;
     public boolean qtyUpdate (String itemCode,int qty) throws SQLException,ClassNotFoundException;
-
+    public int getItemCount() throws SQLException, ClassNotFoundException;
 }

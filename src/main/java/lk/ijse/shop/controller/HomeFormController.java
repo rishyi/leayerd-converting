@@ -9,6 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.CustomerBO;
+import lk.ijse.shop.bo.custom.ItemBO;
+import lk.ijse.shop.bo.custom.OrderBO;
 import lk.ijse.shop.db.DbConnection;
 
 import java.io.IOException;
@@ -33,21 +37,25 @@ public class HomeFormController implements Initializable {
     private int itemCount;
     private int orderCount;
 
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
+    OrderBO orderBO = (OrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDER);
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            customerCount = getCustomerCount();
-        } catch (SQLException e) {
+            customerCount = customerBO.getCustomerCount();
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
         try {
-            itemCount = getItemCount();
-        } catch (SQLException e) {
+            itemCount = itemBO.getItemCount();
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
         try {
-            orderCount = getOrderCount();
-        } catch (SQLException e) {
+            orderCount = orderBO.getOrderCount();
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
         setCustomerCount(customerCount);
@@ -81,47 +89,12 @@ public class HomeFormController implements Initializable {
         lblItemCount.setText(String.valueOf(itemCount));
     }
 
-    private int getItemCount() throws SQLException {
-        String sql = "select count(*) as item_count from item";
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            return rs.getInt("item_count");
-        }
-        return 0;
-    }
-
     private  void setOrderCount(int orderCount) {
         lblOrderCount.setText(String.valueOf(orderCount));
     }
 
-    private int getOrderCount() throws SQLException {
-        String sql = "select count(*) as order_count from orders";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        ResultSet rs = preparedStatement.executeQuery();
-
-        if (rs.next()) {
-            return rs.getInt("order_count");
-        }
-        return 0;
-    }
-
     private void setCustomerCount(int customerCount) {
         lblCustomerCount.setText(String.valueOf(customerCount));
-    }
-
-    private int getCustomerCount() throws SQLException {
-        String sql = "select count(*) as customer_count from customer";
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        if(rs.next()) {
-            return rs.getInt("customer_count");
-        }
-        return 0;
     }
 
     public void btnOnBackToLogin(ActionEvent actionEvent) throws IOException {

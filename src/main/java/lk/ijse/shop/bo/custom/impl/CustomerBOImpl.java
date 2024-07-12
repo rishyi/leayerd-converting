@@ -50,4 +50,9 @@ public class CustomerBOImpl implements CustomerBO {
         return customerDAO.getIds();
     }
 
+    @Override
+    public int getCustomerCount() throws SQLException, ClassNotFoundException {
+        return customerDAO.getCustomerCount();
+    }
+
 }
