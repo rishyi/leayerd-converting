@@ -50,6 +50,7 @@ public class OrderDAOImpl implements OrderDAO {
         return null;
     }
 
+//    For Home Page
     @Override
     public int getOrderCount() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.executeQuery("select count(*) as order_count from orders");

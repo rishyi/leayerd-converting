@@ -10,6 +10,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.shop.bo.BOFactory;
+import lk.ijse.shop.bo.custom.UserBO;
+import lk.ijse.shop.bo.custom.impl.UserBOImpl;
 import lk.ijse.shop.db.DbConnection;
 
 import java.io.IOException;
@@ -25,6 +28,8 @@ public class LoginFormController {
     public AnchorPane rootNode;
     public PasswordField txtPasswordField;
     public CheckBox loginCheckBox;
+
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
     public void linkRegisterOnAction(ActionEvent actionEvent) throws IOException {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/register_form.fxml"));
@@ -49,26 +54,17 @@ public class LoginFormController {
           checkCredintial(userId,password);
       }catch (SQLException e){
           new Alert(Alert.AlertType.ERROR,e.getMessage());
+      } catch (ClassNotFoundException e) {
+          throw new RuntimeException(e);
       }
     }
 
-    private void checkCredintial(String userId, String password) throws SQLException, IOException {
-        String sql = "SELECT u_id,password FROM users WHERE u_id = ?";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setObject(1, userId);
-
-        ResultSet rs = pstm.executeQuery();
-        if (rs.next()) {
-            String dbpwd = rs.getString("password");
-            if (password.equals(dbpwd)) {
-                navigateToHomePage();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Wrong Password").show();
-            }
+    private void checkCredintial(String userId, String password) throws SQLException, IOException, ClassNotFoundException {
+        boolean isValidLogin = userBO.checkCredintialUser(userId,password);
+        if (isValidLogin){
+            navigateToHomePage();
         }else {
-            new Alert(Alert.AlertType.INFORMATION,"Enter user ID and Password").show();
+            new Alert(Alert.AlertType.ERROR,"Invalid Credential");
         }
     }
 
@@ -80,7 +76,6 @@ public class LoginFormController {
         stage.setTitle("Home Page");
         stage.centerOnScreen();
     }
-
 
     public void btnForgetPassword(ActionEvent actionEvent) {
 

@@ -7,10 +7,12 @@ create table customer(
 
 create table orders(
                        o_id varchar (20) primary key,
+                       details varchar(100).
                        date date,
                        c_id varchar(20),
                        foreign key (c_id) references customer (c_id) on update cascade on delete cascade
 );
+
 //ALTER table orders
   modify column details varchar(100);
 

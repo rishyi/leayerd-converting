@@ -119,6 +119,7 @@ public class CustomerFormController {
     void btnClearFields(ActionEvent event) {
         clearFields();
     }
+
     private void clearFields(){
         txtCusID.clear();
         txtCusName.clear();
